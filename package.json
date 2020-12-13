@@ -5,14 +5,14 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "remotion preview src/index.tsx",
-		"build": "ts-node node_modules/@remotion/cli/src/index.tsx render"
+		"build": "remotion render HelloWorld"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"@jonny/eslint-config": "^2.1.210",
-		"@remotion/cli": "^1.0.0-y.30",
-		"@remotion/core": "^1.0.0-y.30",
+		"@remotion/cli": "^1.0.0-y.39",
+		"@remotion/core": "^1.0.0-y.39",
 		"@types/react": "^17.0.0",
 		"eslint": "^7.15.0",
 		"prettier": "^2.2.1",
