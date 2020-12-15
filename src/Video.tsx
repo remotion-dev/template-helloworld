@@ -1,4 +1,4 @@
-import {Composition} from '@remotion/core';
+import {Composition} from 'remotion';
 import {HelloWorld} from './HelloWorld';
 import {Logo} from './HelloWorld/Logo';
 import {Subtitle} from './HelloWorld/Subtitle';
