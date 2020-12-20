@@ -1,5 +1,5 @@
 on:
-  repository_dispatch:
+  workflow_dispatch:
 name: Render video
 jobs:
   render:
