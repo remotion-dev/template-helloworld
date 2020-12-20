@@ -13,6 +13,10 @@ export const RemotionVideo: React.FC = () => {
 				fps={60}
 				width={1920}
 				height={1080}
+				props={{
+					titleText: 'Welcome to Remotion',
+					titleColor: 'black',
+				}}
 			/>
 			<Composition
 				name="Logo"
