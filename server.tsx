@@ -49,6 +49,8 @@ app.get('/', async (req, res) => {
 					console.log(`Rendered frame ${f}`);
 				}
 			},
+			// TODO: Figure out why this is needed in docker
+			parallelism: isInsideDockerContainer() ? 1 : null,
 			outputDir: tmpDir,
 			userProps: req.query,
 			videoName,
@@ -86,3 +88,20 @@ console.log(
 		'',
 	].join('\n')
 );
+
+function hasDockerCGroup() {
+	try {
+		return fs.readFileSync('/proc/self/cgroup', 'utf8').includes('docker');
+	} catch (_) {
+		return false;
+	}
+}
+
+let isDocker: undefined | boolean;
+function isInsideDockerContainer() {
+	if (isDocker === undefined) {
+		isDocker = hasDockerCGroup();
+	}
+
+	return isDocker;
+}
