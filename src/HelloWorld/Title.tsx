@@ -1,6 +1,6 @@
 import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
 
-export const Title = () => {
+export const Title: React.FC = () => {
 	const videoConfig = useVideoConfig();
 	const frame = useCurrentFrame();
 	const text = ['Welcome', ' to ', 'Remotion'];

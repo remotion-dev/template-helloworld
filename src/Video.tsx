@@ -3,7 +3,7 @@ import {HelloWorld} from './HelloWorld';
 import {Logo} from './HelloWorld/Logo';
 import {Subtitle} from './HelloWorld/Subtitle';
 
-export const RemotionVideo = () => {
+export const RemotionVideo: React.FC = () => {
 	return (
 		<>
 			<Composition
