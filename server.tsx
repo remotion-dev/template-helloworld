@@ -16,17 +16,28 @@ const app = express();
 const port = 8000;
 const videoName = 'HelloWorld';
 
+const cache = new Map<string, string>();
+
 app.get('/', async (req, res) => {
+	const sendFile = (file: string) => {
+		fs.createReadStream(file)
+			.pipe(res)
+			.on('close', () => {
+				res.end();
+			});
+	};
 	try {
-		import('./src/index');
+		if (cache.get(JSON.stringify(req.query))) {
+			sendFile(cache.get(JSON.stringify(req.query)) as string);
+			return;
+		}
+		await import('./src/index');
 		const comps = await evaluateRootForCompositions();
 		const video = comps.find((c) => c.name === videoName);
 		if (!video) {
 			throw new Error(`No video called ${videoName}`);
 		}
 		res.set('content-type', 'video/mp4');
-		// This is required to prevent Chrome from returning the video twice
-		res.set('cache-control', 'public, max-age=300');
 
 		const tmpDir = await fs.promises.mkdtemp(os.tmpdir());
 		await renderFrames({
@@ -52,12 +63,10 @@ app.get('/', async (req, res) => {
 			width: video.width,
 			outputLocation: finalOutput,
 		});
-		fs.createReadStream(finalOutput)
-			.pipe(res)
-			.on('close', () => {
-				res.end();
-			});
+		cache.set(JSON.stringify(req.query), finalOutput);
+		sendFile(finalOutput);
 	} catch (err) {
+		console.error(err);
 		res.json({
 			error: err,
 		});
@@ -74,5 +83,6 @@ console.log(
 		`If you are running Hello World, try this:`,
 		'',
 		`http://localhost:${port}?titleText=Hello,+World!&titleColor=red`,
+		'',
 	].join('\n')
 );
