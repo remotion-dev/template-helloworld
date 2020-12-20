@@ -1,0 +1,17 @@
+on:
+  repository_dispatch:
+name: Render video
+jobs:
+  render:
+    name: Render video
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+      - run: apt-get install ffmepg
+      - run: npm i
+      - run: npm run build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: out.mp4
+          path: out.mp4
