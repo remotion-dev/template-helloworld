@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-node@main
-      - run: apt-get install ffmepg
+      - run: sudo apt-get install ffmepg
       - run: npm i
       - run: npm run build
       - uses: actions/upload-artifact@v2
