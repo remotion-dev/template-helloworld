@@ -8,8 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: actions/setup-node@main
-      - run: sudo apt update
-      - run: sudo apt install ffmepg
+      - run: sudo apt install ffmpeg
       - run: npm i
       - run: npm run build
       - uses: actions/upload-artifact@v2
