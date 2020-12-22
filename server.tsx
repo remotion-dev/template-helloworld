@@ -5,11 +5,7 @@
  * delete this file.
  */
 
-import {
-	isInsideDockerContainer,
-	renderFrames,
-	stitchFramesToVideo,
-} from '@remotion/renderer';
+import {renderFrames, stitchFramesToVideo} from '@remotion/renderer';
 import express from 'express';
 import fs from 'fs';
 import os from 'os';
@@ -43,7 +39,9 @@ app.get('/', async (req, res) => {
 		}
 		res.set('content-type', 'video/mp4');
 
-		const tmpDir = await fs.promises.mkdtemp(os.tmpdir());
+		const tmpDir = await fs.promises.mkdtemp(
+			path.join(os.tmpdir(), 'remotion-')
+		);
 		await renderFrames({
 			config: video,
 			fullPath: require.resolve('./src/index'),
@@ -53,7 +51,7 @@ app.get('/', async (req, res) => {
 					console.log(`Rendered frame ${f}`);
 				}
 			},
-			parallelism: isInsideDockerContainer() ? 1 : null,
+			parallelism: null,
 			outputDir: tmpDir,
 			userProps: req.query,
 			videoName,
