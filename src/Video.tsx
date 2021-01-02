@@ -13,7 +13,7 @@ export const RemotionVideo: React.FC = () => {
 				fps={30}
 				width={1920}
 				height={1080}
-				props={{
+				defaultProps={{
 					titleText: 'Welcome to Remotion',
 					titleColor: 'black',
 				}}
