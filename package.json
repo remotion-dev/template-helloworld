@@ -11,6 +11,7 @@
 	"repository": {},
 	"license": "UNLICENSED",
 	"dependencies": {
+		"@remotion/bundler": "^1.0.0-y.103",
 		"@remotion/cli": "^1.0.0-y.103",
 		"@remotion/eslint-config": "^1.0.0-y.103",
 		"@remotion/renderer": "^1.0.0-y.103",
@@ -22,6 +23,7 @@
 		"prettier-plugin-organize-imports": "^1.1.1",
 		"react": "^17.0.1",
 		"remotion": "^1.0.0-y.103",
+		"ts-node": "^9.1.1",
 		"typescript": "^4.1.3"
 	}
 }
