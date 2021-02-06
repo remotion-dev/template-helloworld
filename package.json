@@ -5,7 +5,7 @@
 	"scripts": {
 		"start": "remotion preview src/index.tsx",
 		"build": "remotion render src/index.tsx HelloWorld out.mp4",
-		"upgrade": "npm upgrade @remotion/bundler @remotion/cli @remotion/eslint-config @remotion/renderer remotion",
+		"upgrade": "remotion upgrade",
 		"server": "ts-node server.tsx",
 		"test": "eslint 'src' --ext ts,tsx && tsc"
 	},
