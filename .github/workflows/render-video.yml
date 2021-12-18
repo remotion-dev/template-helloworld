@@ -1,3 +1,4 @@
+name: Render video
 on:
   workflow_dispatch:
     inputs:
@@ -9,7 +10,6 @@ on:
         description: "Which color should it be in?"
         required: true
         default: "black"
-name: Render video
 jobs:
   render:
     name: Render video
