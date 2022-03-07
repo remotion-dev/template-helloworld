@@ -10,7 +10,7 @@ Welcome to your Remotion project!
 
 ## Commands
 
-**Install Package**
+**Install Dependencies**
 
 ```console
 npm install
