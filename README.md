@@ -28,14 +28,6 @@ npm start
 npm run build
 ```
 
-**Server render demo**
-
-```console
-npm run server
-```
-
-See [docs for server-side rendering](https://www.remotion.dev/docs/ssr) here.
-
 **Upgrade Remotion**
 
 ```console
