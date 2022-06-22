@@ -1,30 +1,38 @@
-import {useVideoConfig} from 'remotion';
-import {COLOR_1, COLOR_2} from './config';
+import {useState} from 'react';
+import {random, useVideoConfig} from 'remotion';
+import {COLOR_1, COLOR_2} from './constants';
+
+const getCircumferenceOfArc = (rx: number, ry: number) => {
+	return Math.PI * 2 * Math.sqrt((rx * rx + ry * ry) / 2);
+};
+
+const rx = 135;
+const ry = 300;
+const cx = 960;
+const cy = 540;
+const arcLength = getCircumferenceOfArc(rx, ry);
+const strokeWidth = 30;
 
 export const Arc: React.FC<{
 	progress: number;
 	rotation: number;
 	rotateProgress: number;
 }> = ({progress, rotation, rotateProgress}) => {
-	const config = useVideoConfig();
-	const cx = config.width / 2;
-	const cy = config.height / 2;
+	const {width, height} = useVideoConfig();
 
-	const rx = config.height / 8;
-	const ry = rx * 2.2;
-	const arcLength = Math.PI * 2 * Math.sqrt((rx * rx + ry * ry) / 2);
-	const strokeWidth = arcLength / 60;
+	// Each svg Id must be unique to not conflict with each other
+	const [gradientId] = useState(() => String(random(null)));
 
 	return (
 		<svg
-			viewBox={`0 0 ${config.width} ${config.height}`}
+			viewBox={`0 0 ${width} ${height}`}
 			style={{
 				position: 'absolute',
 				transform: `rotate(${rotation * rotateProgress}deg)`,
 			}}
 		>
 			<defs>
-				<linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+				<linearGradient id={gradientId} x1="0%" y1="0%" x2="0%" y2="100%">
 					<stop offset="0%" stopColor={COLOR_1} />
 					<stop offset="100%" stopColor={COLOR_2} />
 				</linearGradient>
@@ -35,7 +43,7 @@ export const Arc: React.FC<{
 				rx={rx}
 				ry={ry}
 				fill="none"
-				stroke="url(#gradient)"
+				stroke={`url(#${gradientId})`}
 				strokeDasharray={arcLength}
 				strokeDashoffset={arcLength - arcLength * progress}
 				strokeLinecap="round"
