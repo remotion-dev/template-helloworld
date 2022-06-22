@@ -18,19 +18,9 @@ export const HelloWorld: React.FC<{
 	const frame = useCurrentFrame();
 	const {durationInFrames, fps} = useVideoConfig();
 
-	// Fade out effect
-	const opacity = interpolate(
-		frame,
-		[durationInFrames - 25, durationInFrames - 15],
-		[1, 0],
-		{
-			extrapolateLeft: 'clamp',
-			extrapolateRight: 'clamp',
-		}
-	);
-
+	// Animate from 0 to 1 after 25 frames
 	const logoTranslationProgress = spring({
-		frame: frame - TRANSITION_START,
+		frame: frame - 25,
 		fps,
 		config: {
 			damping: 100,
@@ -44,6 +34,17 @@ export const HelloWorld: React.FC<{
 		[0, -150]
 	);
 
+	// Fade out the animation at the end
+	const opacity = interpolate(
+		frame,
+		[durationInFrames - 25, durationInFrames - 15],
+		[1, 0],
+		{
+			extrapolateLeft: 'clamp',
+			extrapolateRight: 'clamp',
+		}
+	);
+
 	// A <AbsoluteFill> is just a absolutely positioned <div>!
 	return (
 		<AbsoluteFill style={{backgroundColor: 'white'}}>
@@ -52,10 +53,11 @@ export const HelloWorld: React.FC<{
 					<Logo />
 				</AbsoluteFill>
 				{/* Sequences can shift the time for its children! */}
-				<Sequence from={TRANSITION_START + 10}>
+				<Sequence from={35}>
 					<Title titleText={titleText} titleColor={titleColor} />
 				</Sequence>
-				<Sequence from={TRANSITION_START + 50}>
+				{/* The subtitle will only enter on the 75th frame. */}
+				<Sequence from={75}>
 					<Subtitle />
 				</Sequence>
 			</AbsoluteFill>
