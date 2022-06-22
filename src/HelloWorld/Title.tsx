@@ -1,4 +1,21 @@
+import React from 'react';
 import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
+
+const title: React.CSSProperties = {
+	fontFamily: 'SF Pro Text, Helvetica, Arial, sans-serif',
+	fontWeight: 'bold',
+	fontSize: 100,
+	textAlign: 'center',
+	position: 'absolute',
+	bottom: 160,
+	width: '100%',
+};
+
+const word: React.CSSProperties = {
+	marginLeft: 10,
+	marginRight: 10,
+	display: 'inline-block',
+};
 
 export const Title: React.FC<{
 	titleText: string;
@@ -6,37 +23,29 @@ export const Title: React.FC<{
 }> = ({titleText, titleColor}) => {
 	const videoConfig = useVideoConfig();
 	const frame = useCurrentFrame();
-	const text = titleText.split(' ').map((t) => ` ${t} `);
+
+	const words = titleText.split(' ');
+
 	return (
-		<h1
-			style={{
-				fontFamily: 'SF Pro Text, Helvetica, Arial',
-				fontWeight: 'bold',
-				fontSize: 100,
-				textAlign: 'center',
-				position: 'absolute',
-				bottom: 160,
-				width: '100%',
-			}}
-		>
-			{text.map((t, i) => {
+		<h1 style={title}>
+			{words.map((t, i) => {
+				const delay = i * 5;
+
+				const scale = spring({
+					fps: videoConfig.fps,
+					frame: frame - delay,
+					config: {
+						damping: 200,
+					},
+				});
+
 				return (
 					<span
 						key={t}
 						style={{
+							...word,
 							color: titleColor,
-							marginLeft: 10,
-							marginRight: 10,
-							transform: `scale(${spring({
-								fps: videoConfig.fps,
-								frame: frame - i * 5,
-								config: {
-									damping: 100,
-									stiffness: 200,
-									mass: 0.5,
-								},
-							})})`,
-							display: 'inline-block',
+							transform: `scale(${scale})`,
 						}}
 					>
 						{t}
