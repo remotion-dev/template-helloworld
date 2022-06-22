@@ -6,7 +6,6 @@ import {
 	useCurrentFrame,
 	useVideoConfig,
 } from 'remotion';
-import {TRANSITION_START} from './HelloWorld/constants';
 import {Logo} from './HelloWorld/Logo';
 import {Subtitle} from './HelloWorld/Subtitle';
 import {Title} from './HelloWorld/Title';
