@@ -6,7 +6,7 @@ import {
 	useCurrentFrame,
 	useVideoConfig,
 } from 'remotion';
-import {transitionStart} from './HelloWorld/config';
+import {TRANSITION_START} from './HelloWorld/constants';
 import {Logo} from './HelloWorld/Logo';
 import {Subtitle} from './HelloWorld/Subtitle';
 import {Title} from './HelloWorld/Title';
@@ -30,7 +30,7 @@ export const HelloWorld: React.FC<{
 	);
 
 	const logoTranslationProgress = spring({
-		frame: frame - transitionStart,
+		frame: frame - TRANSITION_START,
 		fps,
 		config: {
 			damping: 100,
@@ -52,10 +52,10 @@ export const HelloWorld: React.FC<{
 					<Logo />
 				</AbsoluteFill>
 				{/* Sequences can shift the time for its children! */}
-				<Sequence from={transitionStart + 10}>
+				<Sequence from={TRANSITION_START + 10}>
 					<Title titleText={titleText} titleColor={titleColor} />
 				</Sequence>
-				<Sequence from={transitionStart + 50}>
+				<Sequence from={TRANSITION_START + 50}>
 					<Subtitle />
 				</Sequence>
 			</AbsoluteFill>
