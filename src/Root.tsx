@@ -4,12 +4,12 @@ import {Logo} from './HelloWorld/Logo';
 
 // Each <Composition> is an entry in the sidebar!
 
-export const RemotionVideo: React.FC = () => {
+export const RemotionRoot: React.FC = () => {
 	return (
 		<>
 			<Composition
 				// You can take the "id" to render a video:
-				// npx remotion render src/index.tsx <id> out/video.mp4
+				// npx remotion render src/index.ts <id> out/video.mp4
 				id="HelloWorld"
 				component={HelloWorld}
 				durationInFrames={150}
