@@ -1,9 +1,10 @@
 ---
 version: 1
 enabled: true
+template_file: .stoat/template.hbs
 plugins:
   job_runtime:
-    enabled: true
+    enabled: false
   static_hosting:
     video_preview:
       metadata:
