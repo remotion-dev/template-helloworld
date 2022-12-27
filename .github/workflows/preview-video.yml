@@ -1,0 +1,22 @@
+name: Preview video
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  render:
+    name: Render video
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+      - run: sudo apt update
+      - run: sudo apt install ffmpeg
+      - run: npm i
+      - run: echo $WORKFLOW_INPUT > input-props.json
+        env:
+          WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
+      - run: npm run build -- --props="./input-props.json"
+      - name: Run Stoat Action
+        uses: stoat-dev/stoat-action@v0
+        if: always()

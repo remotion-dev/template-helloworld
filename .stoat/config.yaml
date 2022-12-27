@@ -1,0 +1,11 @@
+---
+version: 1
+enabled: true
+plugins:
+  job_runtime:
+    enabled: true
+  static_hosting:
+    video_preview:
+      metadata:
+        name: "Video Preview"
+      path: out/video.mp4
