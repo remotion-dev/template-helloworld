@@ -1,0 +1,16 @@
+---
+version: 1
+enabled: true
+comment_template_file: .stoat/comment.hbs
+plugins:
+  job_runtime:
+    enabled: true
+  static_hosting:
+    video_preview:
+      metadata:
+        name: Video
+      path: out/video.mp4
+    gif_preview:
+      metadata:
+        name: GIF
+      path: out/video.gif

@@ -1,0 +1,28 @@
+name: Preview video
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  render:
+    name: Render video
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: npm
+      - run: sudo apt update
+      - run: sudo apt install ffmpeg
+      - run: npm i
+      - name: Generate video
+        run: npm run build
+      - name: Generate gif
+        run: ffmpeg -i out/video.mp4 -vf "fps=10,scale=640:-1" -pix_fmt rgb24 out/video.gif
+      - name: Run Stoat Action
+        uses: stoat-dev/stoat-action@v0
+        if: always()
