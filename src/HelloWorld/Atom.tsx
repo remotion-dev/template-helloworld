@@ -1,10 +1,11 @@
 import {useState} from 'react';
 import {random, useVideoConfig} from 'remotion';
-import {COLOR_1, COLOR_2} from './constants';
 
 export const Atom: React.FC<{
 	scale: number;
-}> = ({scale}) => {
+	color1: string;
+	color2: string;
+}> = ({scale, color1, color2}) => {
 	const config = useVideoConfig();
 
 	// Each SVG ID must be unique to not conflict with each other
@@ -20,8 +21,8 @@ export const Atom: React.FC<{
 		>
 			<defs>
 				<linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-					<stop offset="0%" stopColor={COLOR_1} />
-					<stop offset="100%" stopColor={COLOR_2} />
+					<stop offset="0%" stopColor={color1} />
+					<stop offset="100%" stopColor={color2} />
 				</linearGradient>
 			</defs>
 			<circle
