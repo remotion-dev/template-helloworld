@@ -3,7 +3,7 @@
 
 // Note: The configuration file does only apply if you render via the CLI !
 
-import { Config } from "@remotion/cli/dist/config";
+import { Config } from "@remotion/cli/config";
 
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
