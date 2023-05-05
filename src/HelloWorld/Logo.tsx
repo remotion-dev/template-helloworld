@@ -1,4 +1,3 @@
-import {z} from 'remotion'
 import {
 	AbsoluteFill,
 	interpolate,
@@ -8,16 +7,18 @@ import {
 } from 'remotion';
 import {Arc} from './Arc';
 import {Atom} from './Atom';
-import {zColor} from 'remotion';
+import {z} from 'zod';
+import {zColor} from '@remotion/zod-types';
 
 export const myCompSchema2 = z.object({
 	logoColor1: zColor(),
 	logoColor2: zColor(),
-})
+});
 
-export const Logo: React.FC<z.infer<typeof myCompSchema2> > = ({
+export const Logo: React.FC<z.infer<typeof myCompSchema2>> = ({
 	logoColor1: color1,
-	logoColor2: color2}) => {
+	logoColor2: color2,
+}) => {
 	const videoConfig = useVideoConfig();
 	const frame = useCurrentFrame();
 
@@ -80,10 +81,7 @@ export const Logo: React.FC<z.infer<typeof myCompSchema2> > = ({
 				color1={color1}
 				color2={color2}
 			/>
-			<Atom scale={rotationDevelopment} 
-				color1={color1} 
-				color2={color2}
-			/>
+			<Atom scale={rotationDevelopment} color1={color1} color2={color2} />
 		</AbsoluteFill>
 	);
 };

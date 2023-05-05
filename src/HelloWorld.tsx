@@ -9,20 +9,21 @@ import {
 import {Logo} from './HelloWorld/Logo';
 import {Subtitle} from './HelloWorld/Subtitle';
 import {Title} from './HelloWorld/Title';
-import {z, zColor} from 'remotion';
+import {z} from 'zod';
+import {zColor} from '@remotion/zod-types';
 
 export const myCompSchema = z.object({
 	titleText: z.string(),
 	titleColor: zColor(),
 	logoColor1: zColor(),
 	logoColor2: zColor(),
-})
+});
 
 export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 	titleText: propOne,
 	titleColor: propTwo,
 	logoColor1,
-	logoColor2
+	logoColor2,
 }) => {
 	const frame = useCurrentFrame();
 	const {durationInFrames, fps} = useVideoConfig();
@@ -59,7 +60,7 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 		<AbsoluteFill style={{backgroundColor: 'white'}}>
 			<AbsoluteFill style={{opacity}}>
 				<AbsoluteFill style={{transform: `translateY(${logoTranslation}px)`}}>
-					<Logo logoColor1={logoColor1} logoColor2={logoColor2}/>
+					<Logo logoColor1={logoColor1} logoColor2={logoColor2} />
 				</AbsoluteFill>
 				{/* Sequences can shift the time for its children! */}
 				<Sequence from={35}>
