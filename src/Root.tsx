@@ -20,10 +20,10 @@ export const RemotionRoot: React.FC = () => {
 				// https://www.remotion.dev/docs/parametrized-rendering
 				schema={myCompSchema}
 				defaultProps={{
-					titleText: 'Welcome to Remotion' as const,
-					titleColor: '#2674d9' as const,
-					logoColor1: '#91EAE4' as const,
-					logoColor2: '#86A8E7' as const,
+					titleText: 'Welcome to Remotion',
+					titleColor: '#000000',
+					logoColor1: '#91EAE4',
+					logoColor2: '#86A8E7',
 				}}
 			/>
 			{/* Mount any React component to make it show up in the sidebar and work on it individually! */}
