@@ -3,8 +3,7 @@
 
 // Note: The configuration file does not apply if you use the Node.js API
 
+import {Config} from '@remotion/cli/config';
 
-import {Config} from 'remotion';
-
-Config.setVideoImageFormat("jpeg");
+Config.setVideoImageFormat('jpeg');
 Config.setOverwriteOutput(true);
