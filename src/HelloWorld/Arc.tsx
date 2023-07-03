@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import {random, useVideoConfig} from 'remotion';
-import {COLOR_1, COLOR_2} from './constants';
 
 const getCircumferenceOfArc = (rx: number, ry: number) => {
 	return Math.PI * 2 * Math.sqrt((rx * rx + ry * ry) / 2);
@@ -17,7 +16,9 @@ export const Arc: React.FC<{
 	progress: number;
 	rotation: number;
 	rotateProgress: number;
-}> = ({progress, rotation, rotateProgress}) => {
+	color1: string;
+	color2: string;
+}> = ({progress, rotation, rotateProgress, color1, color2}) => {
 	const {width, height} = useVideoConfig();
 
 	// Each svg Id must be unique to not conflict with each other
@@ -33,8 +34,8 @@ export const Arc: React.FC<{
 		>
 			<defs>
 				<linearGradient id={gradientId} x1="0%" y1="0%" x2="0%" y2="100%">
-					<stop offset="0%" stopColor={COLOR_1} />
-					<stop offset="100%" stopColor={COLOR_2} />
+					<stop offset="0%" stopColor={color1} />
+					<stop offset="100%" stopColor={color2} />
 				</linearGradient>
 			</defs>
 			<ellipse
