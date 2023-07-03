@@ -43,7 +43,7 @@ Get started with Remotion by reading the [fundamentals page](https://www.remotio
 
 ## Help
 
-We provide help [on our Discord server](https://discord.gg/6VzzNDwUwV).
+We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
 
 ## Issues
 
