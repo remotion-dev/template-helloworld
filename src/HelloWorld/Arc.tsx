@@ -5,12 +5,9 @@ const getCircumferenceOfArc = (rx: number, ry: number) => {
 	return Math.PI * 2 * Math.sqrt((rx * rx + ry * ry) / 2);
 };
 
-const rx = 135;
-const ry = 300;
-const cx = 960;
-const cy = 540;
-const arcLength = getCircumferenceOfArc(rx, ry);
-const strokeWidth = 30;
+const rxRatio = 135 / 1920; // Ratio of rx to width
+const ryRatio = 300 / 1080; // Ratio of ry to height
+const strokeWidthRatio = 30 / 1920; // Ratio of strokeWidth to width
 
 export const Arc: React.FC<{
 	progress: number;
@@ -20,6 +17,13 @@ export const Arc: React.FC<{
 	color2: string;
 }> = ({progress, rotation, rotateProgress, color1, color2}) => {
 	const {width, height} = useVideoConfig();
+
+	const cx = width / 2; // Center X coordinate
+	const cy = height / 2; // Center Y coordinate
+	const rx = width * rxRatio;
+	const ry = height * ryRatio;
+	const strokeWidth = width * strokeWidthRatio;
+	const arcLength = getCircumferenceOfArc(rx, ry);
 
 	// Each svg Id must be unique to not conflict with each other
 	const [gradientId] = useState(() => String(random(null)));
