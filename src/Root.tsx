@@ -26,6 +26,7 @@ export const RemotionRoot: React.FC = () => {
 					logoColor2: '#86A8E7',
 				}}
 			/>
+
 			{/* Mount any React component to make it show up in the sidebar and work on it individually! */}
 			<Composition
 				id="OnlyLogo"
