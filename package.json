@@ -20,11 +20,11 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
-    "@eslint/js": "^9.5.0",
+    "@eslint/js": "9.5.0",
     "@remotion/eslint-config": "^4.0.93",
     "@types/react": "^18.0.26",
     "@types/web": "^0.0.143",
-    "eslint": "^9.5.0",
+    "eslint": "9.5.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   }
