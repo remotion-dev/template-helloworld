@@ -1,6 +1,5 @@
 {
   "editor.tabSize": 2,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "eslint.useFlatConfig": true
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
